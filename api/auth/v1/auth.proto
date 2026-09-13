@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package auth.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+// Пакет у сгенерированных го файлов (имя модуля+куда генерируем; название пакета которое будем использовать)
+option go_package = "github.com/KEmsO-DY/auth/pkg/auth/v1;auth.v1";
+
+service NoteV1Service {
+  rpc Create(CreateRequest) returns (CreateResponse);
+  rpc Get(GetRequest) returns (GetResponse);
+  rpc Update(UpdateRequest) returns (UpdateResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+}
+
+enum Role {
+  ROLE_STATUS_UNSPECIFIED = 0;
+  ROLE_STATUS_ADMIN = 1;
+  ROLE_STATUS_USER = 2;
+}
+
+message CreateRequest {
+  string name = 1;
+  string email = 2;
+  string password = 3;
+  string password_confirm = 4;
+  Role user_role = 5;
+}
+
+message CreateResponse {
+  int64 id = 1;
+}
+
+message GetRequest {
+  int64 id = 1;
+}
+
+message GetResponse {
+  int64 id = 1;
+  string name = 2;
+  string email = 3;
+  Role user_role = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+message UpdateRequest {
+  int64 id = 1;
+  google.protobuf.StringValue name = 2;
+  google.protobuf.StringValue email = 3;
+}
+
+message UpdateResponse {
+  google.protobuf.Empty empty = 1;
+}
+
+message DeleteRequest {
+  int64 id = 1;
+}
+
+message DeleteResponse {
+  google.protobuf.Empty empty = 1;
+}
