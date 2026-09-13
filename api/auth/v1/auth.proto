@@ -7,9 +7,9 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
 
 // Пакет у сгенерированных го файлов (имя модуля+куда генерируем; название пакета которое будем использовать)
-option go_package = "github.com/KEmsO-DY/auth/pkg/auth/v1;auth.v1";
+option go_package = "github.com/KEmsO-DY/auth/pkg/auth/v1;authv1";
 
-service NoteV1Service {
+service AuthService {
   rpc Create(CreateRequest) returns (CreateResponse);
   rpc Get(GetRequest) returns (GetResponse);
   rpc Update(UpdateRequest) returns (UpdateResponse);
